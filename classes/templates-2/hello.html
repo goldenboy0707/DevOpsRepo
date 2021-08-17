@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>INSERT TICKETS</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Configuration</div>
+    <div class="panel-body">
+    </div>
+    <table class="table">
+      <tr>
+        <th>DébutMatin(H)</th><th>DébutMatin(min)</th><th>FinMatin(H)</th><th>FinMatin(min)</th><th>DébutAprèm(H)</th><th>DébutAprèm(min)</th><th>FinAprèm(H)</th><th>FinAprèm(min)</th>
+      </tr>
+      <tr th:each="p:${listeStats}">
+        <td th:text="${p.DebutMatin}"> </td>
+        <td th:text="${p.DebutMinutes}"></td>
+        <td th:text="${p.FinMatin}"></td>
+        <td th:text="${p.FinMinutes}"></td>
+        <td th:text="${p.DebutAprem}"></td>
+        <td th:text="${p.DebutMinutes2}"></td>
+        <td th:text="${p.FinAprem}"></td>
+        <td th:text="${p.FinMinutes2}"></td>
+
+      </tr>
+      <tr>
+       <th>férié 1</th><th>férié 2</th><th>férié 3</th><th>férié 4</th><th>férié 5</th><th>férié 6</th><th>férié 7</th><th>férié 8</th>
+      </tr>
+      <tr th:each="p:${listeStats}">
+        <td th:text="${p.ferOne}"> </td>
+        <td th:text="${p.ferTwo}"></td>
+        <td th:text="${p.ferTree}"></td>
+        <td th:text="${p.ferFour}"></td>
+        <td th:text="${p.ferFive}"></td>
+        <td th:text="${p.ferSixe}"></td>
+        <td th:text="${p.ferSeven}"></td>
+        <td th:text="${p.ferEight}"></td>
+      </tr>
+      <tr>
+        <th>férié 9</th><th>férié 10</th><th>férié 11</th>
+      </tr>
+      <tr th:each="p:${listeStats}">
+        <td th:text="${p.ferNine}"> </td>
+        <td th:text="${p.ferTen}"></td>
+        <td th:text="${p.ferEleven}"></td>
+      </tr>
+    </table></div><div class="form-group">
+  <div th:each="p:${listeStats}" class="form-group"><label class="control-label"> </label>
+    <a th:href="@{/edit(id=${p.id})}"><button class="btn btn-primary">Edit</button></a></div></div></div></div>
+</body>
+</html>

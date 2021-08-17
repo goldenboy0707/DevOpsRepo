@@ -1,0 +1,23 @@
+div[class*="ticket-badge-"]{
+      background: honeydew;
+      color: #42526e;
+  }
+div.ticket-badge-en-attente, div.ticket-badge-attente-de-retour{
+     background-color:#E9B1E0;
+     color:#990000;
+ }
+
+div.ticket-badge-en-cours{
+     background-color:#5CDEFF;
+     color:#333333;
+ }
+
+div.ticket-badge-nouveau, div.ticket-badge-ouvert{
+     background-color:#FFFF00;
+     color:#333333;
+ }
+div.ticket-badge-qualifié{
+      background-color:#F6FEFE;
+      color:#555599;
+  }
+

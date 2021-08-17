@@ -1,0 +1,168 @@
+.gyro{
+    width: 85px;
+    height: 85px;
+    border-radius:50px;
+    position: absolute;
+    top: -36px;
+    left: 30px;
+}
+
+.btn-ticket-link{
+    position: absolute;
+    right: 25px;
+}
+
+.ambulance-group {
+  background: linear-gradient(270deg, #ff0000, #0000ff,#ff0000);
+  background-size: 800% 800%;
+  -webkit-animation: Gradient 1.5s linear infinite;
+  -moz-animation: Gradient 1.5s linear infinite;
+  animation: Gradient 1.5s linear infinite;
+
+}
+body .ambulance-group {
+  display: inline-block;
+}
+body .ambulance-group .amb-light {
+  display: inline-block;
+  position: relative;
+  width: 34px;
+  height: 9px;
+  left: -9px;
+  top: 36px;
+  -moz-transform: translate(100%, -74%);
+  -o-transform: translate(100%, -74%);
+  -ms-transform: translate(100%, -74%);
+  -webkit-transform: translate(100%, -74%);
+  transform: translate(100%, -74%);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  border: solid 3px #ededed;
+  border-bottom-style: none;
+}
+body .ambulance-group .amb-light::after {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 26px;
+  left: 2px;
+  -moz-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  border: solid 3px #ededed;
+  -webkit-clip-path: polygon(0 0, 100% 0%, 100% 50%, 0 50%);
+  clip-path: polygon(0 0, 100% 0%, 100% 50%, 0 50%);
+}
+body .ambulance-group .amb-light-group {
+  display: inline-block;
+  position: relative;
+  left: 4px;
+  top: 26px;
+}
+body .ambulance-group .amb-light-group .light-p {
+  position: absolute;
+  width: 0px;
+  height: 3px;
+  background: #ededed;
+  -webkit-animation: shine 1.2s 0.5s infinite;
+  -moz-animation: shine 1.2s 0.5s infinite;
+  -o-animation: shine 1.2s 0.5s infinite;
+  animation: shine 1.2s 0.5s infinite;
+  moz-transform-origin: left;
+  -o-transform-origin: left;
+  -ms-transform-origin: left;
+  -webkit-transform-origin: left;
+  transform-origin: left;
+}
+body .ambulance-group .amb-light-group .light-p:nth-child(1) {
+  -moz-transform: rotate(-45deg) translate(24px);
+  -o-transform: rotate(-45deg) translate(24px);
+  -ms-transform: rotate(-45deg) translate(24px);
+  -webkit-transform: rotate(-45deg) translate(24px);
+  transform: rotate(-45deg) translate(24px);
+}
+body .ambulance-group .amb-light-group .light-p:nth-child(2) {
+  -moz-transform: rotate(-90deg) translate(24px);
+  -o-transform: rotate(-90deg) translate(24px);
+  -ms-transform: rotate(-90deg) translate(24px);
+  -webkit-transform: rotate(-90deg) translate(24px);
+  transform: rotate(-90deg) translate(24px);
+}
+body .ambulance-group .amb-light-group .light-p:nth-child(3) {
+  -moz-transform: rotate(-135deg) translate(24px);
+  -o-transform: rotate(-135deg) translate(24px);
+  -ms-transform: rotate(-135deg) translate(24px);
+  -webkit-transform: rotate(-135deg) translate(24px);
+  transform: rotate(-135deg) translate(24px);
+}
+
+@-webkit-keyframes shine {
+  50% {
+    width: 18px;
+  }
+}
+@-moz-keyframes shine {
+  50% {
+    width: 18px;
+  }
+}
+@-o-keyframes shine {
+  50% {
+    width: 18px;
+  }
+}
+@keyframes shine {
+  50% {
+    width: 18px;
+  }
+}
+@-webkit-keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+      background-position: 50% 50%;
+    }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+@-moz-keyframes Gradient {
+   0% {
+       background-position: 0% 50%;
+     }
+     50% {
+         background-position: 50% 50%;
+       }
+     100% {
+       background-position: 100% 50%;
+     }
+}
+@-o-keyframes Gradient {
+   0% {
+       background-position: 0% 50%;
+     }
+     50% {
+         background-position: 50% 50%;
+       }
+     100% {
+       background-position: 100% 50%;
+     }
+}
+@keyframes Gradient {
+   0% {
+       background-position: 0% 50%;
+     }
+     50% {
+         background-position: 50% 50%;
+       }
+     100% {
+       background-position: 100% 50%;
+     }
+}

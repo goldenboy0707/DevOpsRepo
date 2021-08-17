@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http//www.ultraq.net.nz/thymeleaf/Layout"
+      layout:decorate="layout">
+<head>
+  <meta charset="UTF-8">
+  <title>Editer</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}">
+</head>
+<body>
+<div class="col-xs-6 col-sm-4"></div> <!-- 1/2 width on mobile, 1/3 screen on tablet) -->
+<div class="col-xs-6 col-sm-8"></div> <!-- 1/2 width on mobile, 2/3 width on tablet -->
+<div class="col-xs-4 col-sm-9"></div> <!-- 1/2 width on mobile, 2/3 width on tablet -->
+<div class="col-xs-10 col-sm-4"></div> <!-- 1/2 width on mobile, 2/3 width on tablet -->
+
+<div layout:fragment="content1">
+  <div class="col-md-6">
+    <div class="panel-panel-default">
+      <div class="panel-heading">Edit</div>
+      <div class="panel-body">
+        <form th:action="@{/save}" method="post">
+
+
+
+          <div class="form-group">
+            <div class="col-xs-6 col-sm-2">
+              <label class="control-label">Matin:</label></div>
+            <div class="col-xs-6 col-sm-1">
+              Du</div>
+            <div class="col-xs-6 col-sm-2">
+              <input class="form-control" type="text" name="DebutMatin"
+                     > <span th:errors=${config.DebutMatin}></span></div><div class="col-xs-6 col-sm-2">
+            <input class="form-control" type="text" name="DebutMinutes"
+                     ><span th:errors=${config.DebutMinutes}></span></div>
+            <div class="col-xs-6 col-sm-1">
+              Au</div>
+            <div class="col-xs-6 col-sm-2">
+              <input class="form-control" type="text" name="FinMatin"
+                     > <span th:errors=${config.FinMatin}></span> </div><div class="col-xs-6 col-sm-2">
+            <input class="form-control" type="text" name="FinMinutes"
+                   > <span th:errors=${config.FinMinutes}></span> </div>
+          </div>
+          <div class="col-xs-6 col-sm-2">
+            <label class="control-label"> </label></div>
+          <div class="col-xs-6 col-sm-2">
+            <label class="control-label"> </label></div> <div class="col-xs-6 col-sm-2">
+          <label class="control-label"> </label></div> <div class="col-xs-6 col-sm-2">
+          <label class="control-label"> </label></div> <div class="col-xs-6 col-sm-2">
+          <label class="control-label"> </label></div><div class="col-xs-6 col-sm-2">
+          <label class="control-label"> </label></div>
+          <div class="form-group">
+            <div class="col-xs-6 col-sm-2">
+              <label class="control-label">Aprem:</label></div>
+            <div class="col-xs-6 col-sm-1">
+              Du</div>
+            <div class="col-xs-6 col-sm-2">
+              <input class="form-control" type="text" name="DebutAprem"
+                     th:value="${config.DebutAprem}"></div><div class="col-xs-6 col-sm-2">
+            <input class="form-control" type="text" name="DebutMinutes2"
+                   th:value="${config.DebutMinutes2}"></div>
+            <div class="col-xs-6 col-sm-1">
+              Au</div>
+            <div class="col-xs-6 col-sm-2">
+              <input class="form-control" type="text" name="FinAprem"
+                     th:value="${config.FinAprem}"></div><div class="col-xs-6 col-sm-2">
+            <input class="form-control" type="text" name="FinMinutes2"
+                   th:value="${config.FinMinutes2}"></div>
+            <div class="col-xs-6 col-sm-2">
+              <label class="control-label"> </label></div> <div class="col-xs-6 col-sm-2">
+            <label class="control-label"> </label></div> <div class="col-xs-6 col-sm-2">
+            <label class="control-label"> </label></div> <div class="col-xs-6 col-sm-2">
+            <label class="control-label"> </label></div> <div class="col-xs-6 col-sm-2">
+            <label class="control-label"> </label></div><div class="col-xs-6 col-sm-2">
+            <label class="control-label"> </label></div>
+          </div>
+
+
+          <div class="form-group">
+
+            <div class="col-xs-6 col-sm-2">
+              <h4><label class="control-label">Jours fériés</label></h4>
+            </div>
+            <div class="col-xs-6 col-sm-2">
+              <label class="control-label"> </label></div>
+            <div class="col-xs-6 col-sm-2">
+              <label class="control-label"> </label></div> <div class="col-xs-6 col-sm-2">
+            <label class="control-label"> </label></div> <div class="col-xs-6 col-sm-2">
+            <label class="control-label"> </label></div> <div class="col-xs-6 col-sm-2">
+            <label class="control-label"> </label></div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-xs-6 col-sm-2">
+              <label class="control-label">férié 1 :</label>
+              <input class="form-control" type="text" name="ferOne"
+                     > <span th:errors="${config.ferOne}"></span> </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-xs-6 col-sm-2">
+              <label class="control-label">férié 2 :</label>
+              <input class="form-control" type="text" name="ferTwo"
+                     ><span th:errors="${config.ferTwo}"></span> </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-xs-6 col-sm-2">
+              <label class="control-label">férié 3 :</label>
+              <input class="form-control" type="text" name="ferTree"
+                     ><span th:errors="${config.ferTree}"></span></div>
+          </div>
+
+
+          <div class="form-group">
+            <div class="col-xs-6 col-sm-2">
+              <label class="control-label">férié 4 :</label>
+              <input class="form-control" type="text" name="ferFour"
+                     ><span th:errors="${config.ferFour}"></span></div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-xs-6 col-sm-2">
+              <label class="control-label">férié 5 :</label>
+              <input class="form-control" type="text" name="ferFive"
+                     ><span th:errors="${config.ferFive}"></span></div>
+          </div>
+
+          <div class="col-xs-6 col-sm-2">
+            <label class="control-label"> </label></div>
+          <div class="col-xs-6 col-sm-2">
+            <label class="control-label"> </label></div> <div class="col-xs-6 col-sm-2">
+          <label class="control-label"> </label></div> <div class="col-xs-6 col-sm-2">
+          <label class="control-label"> </label></div> <div class="col-xs-6 col-sm-2">
+          <label class="control-label"> </label></div><div class="col-xs-6 col-sm-2">
+          <label class="control-label"> </label></div>
+
+          <div class="form-group">
+            <div class="col-xs-6 col-sm-2">
+              <label class="control-label">férié 6 :</label>
+              <input class="form-control" type="text" name="ferSixe"
+                    ><span th:errors="${config.ferSixe}"></span></div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-xs-6 col-sm-2">
+              <label class="control-label">férié 7 :</label>
+              <input class="form-control" type="text" name="ferSeven">
+                     <span th:errors="${config.ferSeven}"></span></div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-xs-6 col-sm-2">
+              <label class="control-label">férié 8 :</label>
+              <input class="form-control" type="text" name="ferEight"
+                     ><span th:errors="${config.ferEight}"></span></div>
+          </div>
+
+
+          <div class="form-group">
+            <div class="col-xs-6 col-sm-2">
+              <label class="control-label">férié 9 :</label>
+              <input class="form-control" type="text" name="ferNine"
+                     ><span th:errors="${config.ferNine}"></span></div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-xs-6 col-sm-2">
+              <label class="control-label">férié 10 :</label>
+              <input class="form-control" type="text" name="ferTen"
+                     ><span th:errors="${config.ferTen}"></span></div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-xs-6 col-sm-2">
+              <label class="control-label">férié 11 :</label>
+              <input class="form-control" type="text" name="ferEleven"
+                   ><span th:errors="${config.ferEleven}"></span></div>
+          </div>
+
+          <div class="col-xs-6 col-sm-2">
+            <label class="control-label"> </label></div>
+          <div class="col-xs-6 col-sm-2">
+            <label class="control-label"> </label></div> <div class="col-xs-6 col-sm-2">
+          <label class="control-label"> </label></div> <div class="col-xs-6 col-sm-2">
+          <label class="control-label"> </label></div> <div class="col-xs-6 col-sm-2">
+          <label class="control-label"> </label></div><div class="col-xs-6 col-sm-2">
+          <label class="control-label"> </label></div>
+
+          <div class="form-group"><label class="control-label"> </label>
+            <button type="submit" class="btn btn-primary">Save</button></div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>

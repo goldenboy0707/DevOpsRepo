@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http//www.ultraq.net.nz/thymeleaf/Layout" xmlns="http://www.w3.org/1999/html"
+      layout:decorate="layout">
+<head>
+    <style>
+    .espace
+{
+ height : 10px;
+}
+        .margeEnBas
+{
+ padding-bottom : 20px;
+}
+.margeEnHaut
+ {
+ padding-top : 20 px;
+}
+.form-control
+{
+height: 50px;
+  width: 300px;
+  font-size: 3.5em;
+}
+    </style>
+  <meta charset="UTF-8">
+  <title>Editer</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}">
+</head>
+<body><form th:action="@{/save}" method="post">
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Edit</div>
+        <div class="panel-body">
+
+          <table class="table">
+
+            <tr>
+                <th> <label class="control-label">Matin:</label></th>
+
+                <th>
+
+                    Du</th>
+
+
+                <th>
+
+                <input class="form-control" type="text" name="DebutMatin"
+                       th:value="${config.DebutMatin}"> <span th:errors=${config.DebutMatin}></span></th><th>
+              <input class="form-control" type="text" name="DebutMinutes"
+                     th:value="${config.DebutMinutes}"><span th:errors=${config.DebutMinutes}></span></th>
+
+              <th>
+                Au :</th><th>
+                <input class="form-control" type="text" name="FinMatin"
+                       th:value="${config.FinMatin}"> <span th:errors=${config.FinMatin}></span> </th><th>
+              <input class="form-control" type="text" name="FinMinutes"
+                     th:value="${config.FinMinutes}"> <span th:errors=${config.FinMinutes}></span> </th>
+                <th> </th><th> </th><th> </th>
+            </tr>
+
+          <div class="form-group">
+            <label class="control-label"></label>
+            <input class="form-control" type="hidden" name="id"
+            th:value="${config.Id}"> <label class="control-label"></label>
+          </div>
+
+
+            <tr>
+              <th>
+                  <label class="control-label">Aprem:</label></th>
+              <th>
+                Du :</th><th>
+
+              <input class="form-control" type="text" name="DebutAprem"
+                     th:value="${config.DebutAprem}"> <span th:errors=${config.DebutMatin}></span></th><th>
+              <input class="form-control" type="text" name="DebutMinutes2"
+                     th:value="${config.DebutMinutes2}"><span th:errors=${config.DebutMinutes}></span></th>
+
+                <th>
+                Au :</th><th>
+              <input class="form-control" type="text" name="FinAprem"
+                     th:value="${config.FinAprem}"> <span th:errors=${config.FinAprem}></span> </th><th>
+              <input class="form-control" type="text" name="FinMinutes2"
+                     th:value="${config.FinMinutes2}"> <span th:errors=${config.FinMinutes2}></span> </th>
+
+            </tr>
+
+
+<tr>
+
+
+    <th>
+        <label class="control-label">férié 1 :</label>
+           <input class="form-control" type="text" name="ferOne"
+                     th:value="${config.ferOne}"> <span th:errors="${config.ferOne}"></span>
+            </th>
+    <th> </th>
+            <th>
+              <label class="control-label">férié 2 :</label>
+              <input class="form-control" type="text" name="ferTwo"
+                     th:value="${config.ferTwo}"><span th:errors="${config.ferTwo}"></span>
+            </th>
+    <th> </th>
+            <th>
+              <label class="control-label">férié 3 :</label>
+              <input class="form-control" type="text" name="ferTree"
+                     th:value="${config.ferTree}"><span th:errors="${config.ferTree}"></span>
+            </th>
+    <th> </th>
+            <th>
+              <label class="control-label">férié 4 :</label>
+              <input class="form-control" type="text" name="ferFour"
+                     th:value="${config.ferFour}"><span th:errors="${config.ferFour}"></span>
+            </th></tr>
+              <tr>
+            <th>
+              <label class="control-label">férié 5 :</label>
+              <input class="form-control" type="text" name="ferFive"
+                     th:value="${config.ferFive}"><span th:errors="${config.ferFive}"></span>
+            </th><th> </th>
+            <th>
+              <label class="control-label">férié 6 :</label>
+              <input class="form-control" type="text" name="ferSixe"
+                     th:value="${config.ferSixe}"><span th:errors="${config.ferSixe}"></span></th><th> </th>
+                  <th>
+              <label class="control-label">férié 7 :</label>
+              <input class="form-control" type="text" name="ferSeven"
+                     th:value="${config.ferSeven}"><span th:errors="${config.ferSeven}"></span></th><th> </th>
+
+                  <th>
+
+              <label class="control-label">férié 8 :</label>
+              <input class="form-control" type="text" name="ferEight"
+                     th:value="${config.ferEight}"><span th:errors="${config.ferEight}"></span></th>
+              </tr>
+              <tr><th> </th>
+                  <th>
+              <label class="control-label">férié 9 :</label>
+              <input class="form-control" type="text" name="ferNine"
+                     th:value="${config.ferNine}"><span th:errors="${config.ferNine}"></span></th><th> </th>
+
+                  <th>
+              <label class="control-label">férié 10 :</label>
+              <input class="form-control" type="text" name="ferTen"
+                     th:value="${config.ferTen}"><span th:errors="${config.ferTen}"></span></th><th> </th>
+
+              <th>
+              <label class="control-label">férié 11 :</label>
+              <input class="form-control" type="text" name="ferEleven"
+                     th:value="${config.ferEleven}"><span th:errors="${config.ferEleven}"></span></th>
+                  <th></th>
+              </tr>
+
+
+          </table>
+
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </div>
+
+</form>
+</body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+
+    <style>
+
+     .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+        color: #fff;
+        background-color: #337ab7 !important;
+
+    }
+
+        table,th,td
+    {
+      border:2px solid grey;
+      margin-left: 5px; //use whatever you want
+    }
+ul.nav-pills {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+ul.nav-pills li {display: inline;}
+
+ul.nav-pills li a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+ul.nav-pills li a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+ul.nav-pills li a:hover:not(.active) {background-color: #ddd;}
+
+.notification {
+top: -33px;
+  color: white;
+  text-decoration: none;
+  padding: 4px 18px;
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+}
+.notification .badge {
+  position: absolute;
+  top: 30px;
+  right: -15px;
+  padding: 8px 13px;
+  border-radius: 80%;
+  background: red;
+  color: white;
+}
+.small.ex1 {
+  font-size: 60px;
+}
+.container{
+ top: 30px;
+  right: -15px;
+}
+.place {
+margin: -10px 20px 0px 20px;
+}
+.material-icons {top: 10px;
+  right: -15px;}
+.material-icons.md-36 { font-size: 36px; }
+.selectpicker{
+margin: -10px 20px 0px 20px;
+}
+.card-category{
+font-style: italic;
+}
+  </style>
+
+    <!-- Required meta tags <link rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}">-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="css/lightpick.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}" href="css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/4.3.0/css/bootstrap/tabulator_bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="css/material.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/gyro.css">
+    <link rel="stylesheet" href="css/toggle.css">
+    <link rel="stylesheet" href="css/island.css">
+    <link rel="stylesheet" href="css/ticketcolor.css">
+
+
+
+
+    <title>TicketManager</title>
+
+</head>
+
+<body>
+
+<div class="container-fluid">
+
+    <!-- HEADER : with login ok/ko green/red buton -->
+    <div class="row header" id="header">
+        <div class="col-xl-1 text-center justify-content-center"></div>
+        <div class="col-xl text-center justify-content-center"><h1> Monitoring | Tickets</h1></div>
+        <div class="col-xl-2" id="server-state"><div class="toggle"><input type="checkbox" id="toggle" disabled/><label for="toggle"></label></div></div>
+    </div>
+
+    <div class="row main-container">
+
+        <!-- LEFT CONTAINER : Stat/Graphique et Liste -->
+        <div class="col-xl-6 text-center justify-content-center" id="left-container">
+
+            <div class="fullscreen-button" id="left-fullscreen">
+                <i class="material-icons">aspect_ratio</i>
+            </div>
+
+            <!-- Ticket List -->
+            <div class="card card-stats d-none" id="tickets_display">
+                <div class="card-header card-header-info card-header-icon">
+                    <div class="card-icon switch-left"><i class="material-icons">view_day</i></div>
+                    <h3 class="card-title"><small style="color:blue">Pris en charge</small><br><span id="ticket-num">0</span> <small>tickets</small></h3>
+                    <span id="ticket-encours-filter" class="form-control"></span>
+                </div>
+                <div class="ticket-card-footer">
+                    <div class="stats"><div class="accordion" id="accordion-tickets"></div></div>
+                </div>
+            </div>
+
+
+
+            <!-- Stats tables -->
+            <div class="card card-stats d-none" id="tickets_table">
+                <div class="card-header card-header-info card-header-icon">
+                    <div class="card-icon switch-left">
+                        <i class="material-icons">view_list</i>
+                    </div>
+                    <h3 class="card-title"><small style="color:blue">Moyenne GTI/GTR</small></h3>
+                    <div id="table-options">
+
+
+                      <input class="selectpicker" type="text" id="datePick" placeholder="Sélectionner une période">
+
+                        <select class="selectpicker" id="table-types-select" data-live-search="true" data-style="btn-info" title="Criticité" data-selected-text-format="count" multiple>
+                            <option value="">Unassigned</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="ticket-card-footer limit-max-height">
+                    <div class="stats" id="table-display"> Chargement du tableau... </div>
+                </div>
+            </div>
+
+
+
+            <!-- Graph by client -->
+            <div class="card card-stats" id="client-bar-chart">
+                <div class="card-header card-header-info card-header-icon">
+                    <div class="card-icon switch-left">
+                        <i class="material-icons">assessment</i>
+                    </div>
+
+                    <h3 class="card-title"><small style="color:blue">Graphique par client</small></h3>
+
+                    <h3 class="card-title"><span id="bar-ticket-number">0</span> <small>tickets</small></h3>
+                    <select class="selectpicker" id="bar-types-select" data-live-search="true" data-style="btn-info" title="Toutes types" data-selected-text-format="count" multiple>
+                        <option value="">Unassigned</option>
+                    </select>
+                </div>
+                <div class="ticket-card-footer limit-max-height">
+                    <canvas id="client-bar-chart-draw"></canvas>
+                </div>
+            </div>
+
+                <!-- Evil Blocker Reminder -->
+            <div class="container">
+                <div class="card card-stats d-none" id="blocking-card">
+                    <div class="card-header card-header-icon ">
+                        <div class="card-icon ambulance-group">
+                            <i class="material-icons">view_day</i>
+                        </div>
+                        <p class="card-category">Tickets</p>
+                        <h3 class="card-title"> <span id="blocking-number">0</span>
+                            <small>bloquants</small>
+                        </h3>
+                    </div>
+                    <div class="ticket-card-footer">
+                        <div class="stats">
+                            <div class="accordion" id="accordion-blocking">
+                            </div>
+                        </div>
+                    </div>
+                </div></div>
+        </div>
+
+        <div class="container col-xl-6 justify-content-center">
+
+
+            <div class="card-header card-header-icon">
+                <div class="row">
+
+                <a href="#" class="bg-info notification">
+                    <span class="bg-info material-icons md-36 mt">notifications_active</span>
+                    <h3><span id="ticket-nam" class="badge ">0</span></h3>
+                </a>
+                    <small style="color:white">         ... </small>
+                    <div class="col-sm">
+
+               <h4 style="color:black">Nouveaux tickets</h4>
+                    </div></div>
+                <div class="accordion" id="accordion-new">
+                </div>
+
+
+                <div class="panel panel-primary">
+                    <div class="row">
+                    <div class="panel-body">
+                        <form th:action="@{/hello}" method="get">
+                            <button type="submit" class="btn ptn-secondary" style ="background-color:#483d8b">chercher</button>
+                            <input class="selectpicker" name="motCle" type="text" id="datePock" th:value="${motCle}" placeholder="Sélectionner une période">
+                        </form>
+                    </div></div>
+                    <table class="table">
+                        <tr class="table-primary">
+                            <th>Date</th><th>Total</th><th>Traités ajr</th><th>Bloquante</th><th>Crée ajr</th>
+                        </tr>
+                        <tr th:each="p:${listeStats}">
+                            <td th:text="${p.inde}"></td>
+                            <td th:text="${p.Total}"></td>
+                            <td th:text="${p.Traite}"></td>
+                            <td th:text="${p.bloquant}"></td>
+                            <td th:text="${p.crea}"></td>
+                        </tr>
+                    </table>
+                <ul class="nav nav-pills">
+                    <li th:class="${currentPage==status.index}?'active':''" th:each="page,status:${pages}">
+                        <a th:href="@{/hello(page=${status.index}, motCle=${motCle})}" th:text="${status.index}"></a>
+                    </li>
+                </ul>
+                </div></div>
+        </div>
+
+
+
+
+
+    </div>
+</div>
+
+
+
+<!-- Template -->
+<div class="card d-none" id="template-card">
+    <div class="card-header" id="heading__TICKET_ID__">
+        <h5 class="mb-0">
+            <button class=" btn btn-link ticket-btn " type="button" data-toggle="collapse" data-target="#collapse__TICKET_ID__" aria-expanded="true" aria-controls="collapse__TICKET_ID__">
+                <div class="row">
+                    <div class="ticket-title col-lg-9">__TICKET_TITLE__</div>
+                    <div class="badge badge-pill col-lg-3 ticket-status" id="ticket-__TICKET_ID__-status">__TICKET_STATUS__</div>
+                </div>
+            </button>
+        </h5>
+    </div>
+
+
+    <div id="collapse__TICKET_ID__" class="collapse" aria-labelledby="heading__TICKET_ID__" data-parent="__ACCORDION_NAME__">
+        <div class="ticket-card-body ">
+            <div class="row">
+                <div class="col-xl-2 ticket-fields">
+                    Projet :
+                </div>
+                <div class="col-xl-6">
+                    __TICKET_PROJECT__
+                </div>
+                <div class="col-xl-2 offset-xl-2">
+                    <a href="__TICKET_LINK__" class="btn btn-info btn-sm btn-ticket-link " target="_blank">lien</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-2 ticket-fields">
+                    Assigné à :
+                </div>
+                <div class="col-xl-10">
+                    __TICKET_ASSIGNED_TO__
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-2 ticket-fields">
+                    Crée le :
+                </div>
+                <div class="col-xl-10">
+                    __TICKET_CREATED_ON__
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-2 ticket-fields">
+                    Modifié le :
+                </div>
+                <div class="col-xl-10">
+                    __TICKET_MODIFIED_ON__
+                </div>
+                <div class="col-xl-2 ticket-fields">
+                    GTI :
+                </div>
+                <div class="col-xl-10">
+                    __TICKET_NUMBER__
+                </div>
+                <div class="col-xl-2 ticket-fields">
+                    GTR :
+                </div>
+                <div class="col-xl-10">
+                    __TICKET_RESO__
+                </div>
+                <div class="col-xl-2 ticket-fields">
+                    Temps d'attente :
+                </div>
+                <div class="col-xl-10">
+                    __WEEK_END__
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Template -->
+
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="lightpick.js"></script>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/linq.js/2.2.0.2/linq.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/4.3.0/js/tabulator.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="js/fullscreen-cards.js" ></script>
+<script src="js/resize.js" ></script>
+<script src="js/timer.js" ></script>
+<script src="js/table.js" ></script>
+<script src="js/barchart.js" ></script>
+<script src="js/ticket_display.js" ></script>
+</body>
+</html>
